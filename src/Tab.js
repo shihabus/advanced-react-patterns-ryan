@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-const TabContainer = styled.div`
+export const TabContainer = styled.div`
   height: 50vh;
   background: yellowgreen;
   width: 100%;
@@ -9,13 +9,13 @@ const TabContainer = styled.div`
   flex-direction: column;
 `;
 
-const TabContent = styled.div`
+export const TabContent = styled.div`
   height: 100%;
   width: 100%;
   background: red;
 `;
 
-const TabPanelContainer = styled.div`
+export const TabPanelContainer = styled.div`
   height: 20%;
   background-color: yellow;
   bottom: 0;
@@ -24,7 +24,7 @@ const TabPanelContainer = styled.div`
   justify-content: space-around;
 `;
 
-const TabItem = styled.div`
+export const TabItem = styled.div`
   width: 20%;
   height: 100%;
   background-color: ${({ isTabActive, isDisabled }) =>
