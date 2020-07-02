@@ -27,7 +27,7 @@ const tabs = [
 export default function App() {
   return (
     <AppContainer>
-      <Tab tabList={tabs} />
+      <Tab tabList={tabs} tabsOnBottom={false} />
     </AppContainer>
   );
 }

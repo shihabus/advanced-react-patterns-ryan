@@ -5,7 +5,8 @@ const TabContainer = styled.div`
   height: 50vh;
   background: yellowgreen;
   width: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 const TabContent = styled.div`
@@ -18,7 +19,6 @@ const TabPanelContainer = styled.div`
   height: 20%;
   background-color: goldenrod;
   bottom: 0;
-  position: absolute;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -32,10 +32,9 @@ const TabItem = styled.div`
 
 function Tabs(props) {
   const [activeTab, setActiveTab] = useState(0);
+  const { tabsOnBottom, tabList } = props;
 
   const renderTabPanel = () => {
-    const { tabList } = props;
-
     return tabList.map((tab, idx) => (
       <TabItem
         key={idx}
@@ -48,14 +47,15 @@ function Tabs(props) {
   };
 
   const renderTabContent = () => {
-    const { tabList } = props;
     return <>{tabList[activeTab].content}</>;
   };
 
+  const renderContent = <TabContent>{renderTabContent()}</TabContent>;
+  const renderTabs = <TabPanelContainer>{renderTabPanel()}</TabPanelContainer>;
+
   return (
     <TabContainer>
-      <TabContent>{renderTabContent()}</TabContent>
-      <TabPanelContainer>{renderTabPanel()}</TabPanelContainer>
+      {tabsOnBottom ? [renderContent, renderTabs] : [renderTabs, renderContent]}
     </TabContainer>
   );
 }
