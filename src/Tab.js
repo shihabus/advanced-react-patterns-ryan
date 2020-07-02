@@ -17,7 +17,7 @@ const TabContent = styled.div`
 
 const TabPanelContainer = styled.div`
   height: 20%;
-  background-color: goldenrod;
+  background-color: yellow;
   bottom: 0;
   width: 100%;
   display: flex;
@@ -27,24 +27,29 @@ const TabPanelContainer = styled.div`
 const TabItem = styled.div`
   width: 20%;
   height: 100%;
-  background-color: ${({ isTabActive }) => (isTabActive ? "white" : "#d1d1d1")};
+  background-color: ${({ isTabActive, isDisabled }) =>
+    isDisabled ? "#e1e1e1" : isTabActive ? "green" : "orange"};
+  color: ${({ isDisabled }) => (isDisabled ? "#a1a1a1" : "#000")};
 `;
 
 function Tabs(props) {
   const [activeTab, setActiveTab] = useState(0);
-  const { tabsOnBottom, tabList } = props;
+  const { tabsOnBottom, tabList, disabled } = props;
 
-  const renderTabPanel = () => {
-    return tabList.map((tab, idx) => (
-      <TabItem
-        key={idx}
-        onClick={() => setActiveTab(idx)}
-        isTabActive={idx === activeTab}
-      >
-        {tab.label}
-      </TabItem>
-    ));
-  };
+  const renderTabPanel = () =>
+    tabList.map((tab, idx) => {
+      const isDisabled = disabled.includes(idx);
+      return (
+        <TabItem
+          key={idx}
+          onClick={() => !isDisabled && setActiveTab(idx)}
+          isTabActive={idx === activeTab}
+          isDisabled={isDisabled}
+        >
+          {tab.label}
+        </TabItem>
+      );
+    });
 
   const renderTabContent = () => {
     return <>{tabList[activeTab].content}</>;
