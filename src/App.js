@@ -26,27 +26,23 @@ const tabs = [
   }
 ];
 
-const DataTab = props => {
-  const { tabs, disabledTabs } = props;
-  return (
-    <Tabs>
-      <TabsList>
-        {tabs.map((tab, idx) => (
-          <Tab disabled={disabledTabs.includes(idx)}>{tab.label}</Tab>
-        ))}
-      </TabsList>
-      <TabPanels>
-        {tabs.map(tab => (
-          <TabPanel>{tab.content}</TabPanel>
-        ))}
-      </TabPanels>
-    </Tabs>
-  );
-};
 export default function App() {
   return (
     <AppContainer>
-      <DataTab tabs={tabs} disabledTabs={[0]} />
+      <Tabs>
+        <TabsList>
+          <Tab>Home</Tab>
+          <Tab>App</Tab>
+          <Tab>About</Tab>
+          <Tab>Help</Tab>
+        </TabsList>
+        <TabPanels>
+          <TabPanel>Home sweet home</TabPanel>
+          <TabPanel>App sweet app</TabPanel>
+          <TabPanel>About sweet about</TabPanel>
+          <TabPanel>Help sweet help</TabPanel>
+        </TabPanels>
+      </Tabs>
     </AppContainer>
   );
 }
