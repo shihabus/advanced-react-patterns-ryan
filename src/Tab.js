@@ -12,7 +12,7 @@ export const TabContainer = styled.div`
 export const TabContent = styled.div`
   height: 100%;
   width: 100%;
-  background: red;
+  background: ${({ bg }) => bg || ""};
   padding: 5% 10%;
   font-size: 20px;
   color: #fff;

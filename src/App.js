@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import Tab from "./Tab";
 import styled from "styled-components";
 import { Tabs, TabsList, Tab, TabPanels, TabPanel } from "./ContextTab";
@@ -26,10 +26,18 @@ const tabs = [
   }
 ];
 
+const COLORS = ["red", "green", "blue", "violet", "brown"];
+
 export default function App() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <AppContainer>
-      <Tabs>
+      <Tabs
+        defaultActiveIndex={2}
+        activeIndex={activeIndex}
+        onChange={index => setActiveIndex(index)}
+      >
         <>
           <TabsList>
             <Tab>
@@ -50,9 +58,14 @@ export default function App() {
           </TabsList>
         </>
         <>
-          <TabPanels>
+          <TabPanels bg={COLORS[activeIndex] || ""}>
             <TabPanel>Home sweet home</TabPanel>
-            <TabPanel>App sweet app</TabPanel>
+            <TabPanel>
+              <div>
+                <p>App sweet app</p>
+                <button onClick={() => setActiveIndex(4)}>Go to School</button>
+              </div>
+            </TabPanel>
             <TabPanel>About sweet about</TabPanel>
             <TabPanel>Help sweet help</TabPanel>
             <TabPanel>School sweet school</TabPanel>

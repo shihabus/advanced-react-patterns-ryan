@@ -8,12 +8,26 @@ const TabContext = React.createContext({
 TabContext.displayName = "TabContext";
 
 export const Tabs = props => {
-  const [activeTab, setActiveTab] = useState(1);
-
   const { children } = props;
 
+  const [activeTab, setActiveTab] = useState(props.defaultActiveIndex || 1);
+
+  const isControlled = props.activeIndex !== null;
+
+  const handleTabChange = index => {
+    props.onChange(index);
+    if (!isControlled) {
+      setActiveTab(index);
+    }
+  };
+
   return (
-    <TabContext.Provider value={{ activeTab, setActiveTab }}>
+    <TabContext.Provider
+      value={{
+        activeTab: isControlled ? props.activeIndex : activeTab,
+        setActiveTab: handleTabChange
+      }}
+    >
       <TabContainer>{children}</TabContainer>
     </TabContext.Provider>
   );
@@ -48,9 +62,9 @@ export const Tab = props => {
 
 export const TabPanels = props => {
   const { activeTab } = useContext(TabContext);
-  const { children } = props;
+  const { children, bg } = props;
 
-  return <TabContent>{children[activeTab]}</TabContent>;
+  return <TabContent bg={bg}>{children[activeTab]}</TabContent>;
 };
 
 export const TabPanel = props => {
