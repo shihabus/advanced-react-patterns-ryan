@@ -2,7 +2,7 @@ import React from "react";
 // import Tab from "./Tab";
 import styled from "styled-components";
 import { Tabs, TabsList, Tab, TabPanels, TabPanel } from "./Compsables";
-
+import { FaBed, FaPlane, FaCamera, FaMobile } from "react-icons/fa";
 const AppContainer = styled.div`
   padding: 5% 10%;
 `;
@@ -31,10 +31,18 @@ export default function App() {
     <AppContainer>
       <Tabs>
         <TabsList>
-          <Tab>Home</Tab>
-          <Tab>App</Tab>
-          <Tab>About</Tab>
-          <Tab>Help</Tab>
+          <Tab disabled>
+            <FaBed />
+          </Tab>
+          <Tab>
+            <FaPlane />
+          </Tab>
+          <Tab>
+            <FaCamera />
+          </Tab>
+          <Tab>
+            <FaMobile />
+          </Tab>
         </TabsList>
         <TabPanels>
           <TabPanel>Home sweet home</TabPanel>

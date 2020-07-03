@@ -13,11 +13,14 @@ export const TabContent = styled.div`
   height: 100%;
   width: 100%;
   background: red;
+  padding: 5% 10%;
+  font-size: 20px;
+  color: #fff;
 `;
 
 export const TabPanelContainer = styled.div`
   height: 20%;
-  background-color: yellow;
+  background-color: #27304b;
   bottom: 0;
   width: 100%;
   display: flex;
@@ -27,9 +30,12 @@ export const TabPanelContainer = styled.div`
 export const TabItem = styled.div`
   width: 20%;
   height: 100%;
-  background-color: ${({ isTabActive, isDisabled }) =>
-    isDisabled ? "#e1e1e1" : isTabActive ? "green" : "orange"};
-  color: ${({ isDisabled }) => (isDisabled ? "#a1a1a1" : "#000")};
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ isTabActive, isDisabled }) =>
+    isDisabled ? "#878C9B" : isTabActive ? "#00D290" : "#fff"};
 `;
 
 function Tabs(props) {
