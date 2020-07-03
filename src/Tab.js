@@ -29,6 +29,7 @@ export const TabPanelContainer = styled.div`
 
 export const TabItem = styled.div`
   width: 20%;
+  padding: 5% 0px;
   height: 100%;
   font-size: 40px;
   display: flex;
